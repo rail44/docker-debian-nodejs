@@ -1,8 +1,8 @@
 FROM debian
 MAINTAINER Satoshi Amemiya
 
-ADD http://nodejs.org/dist/v0.11.10/node-v0.11.10-linux-x64.tar.gz /
-RUN tar xf node-v0.11.10-linux-x64.tar.gz
-RUN cd node-v0.11.10-linux-x64 && cp -r bin include lib share /usr
-RUN rm -rf node-v0.11.10-linux-x64
+RUN echo 'deb http://ftp.debian.org/debian wheezy-backports main' >> /etc/apt/sources.list
+RUN apt-get update
+RUN apt-get install -y nodejs
+RUN ln -s /usr/bin/nodejs /usr/bin/node
 CMD node
